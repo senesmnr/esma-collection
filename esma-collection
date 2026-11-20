@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESMA COLLECTION | Kadın Giyim</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--gold:#b8924a;--gold-light:#d9b96e;--ink:#161616;--muted:#777;--line:#e8e4dc;--soft:#f6f4ef}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Jost',sans-serif;background:#fff;color:var(--ink);font-weight:400}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* Duyuru */
+.announce{background:var(--ink);color:#e9e2d0;text-align:center;font-size:12px;letter-spacing:.08em;padding:9px 4%}
+
+/* Üst menü */
+header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 3%;height:76px}
+nav{display:flex;gap:30px;align-items:center;height:100%}
+.nav-item{height:100%;display:flex;align-items:center}
+.nav-link{background:none;border:0;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:400;height:100%;position:relative}
+.nav-link::after{content:"";position:absolute;left:0;bottom:22px;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-link:hover::after,.nav-link.on::after{width:100%}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:30px;letter-spacing:.2em;background:linear-gradient(100deg,#9c7634,#e3c882 45%,#a98139);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center;white-space:nowrap}
+.right{display:flex;justify-content:flex-end;gap:22px;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.right a:hover{color:var(--gold)}
+
+/* Mega menü */
+.mega{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 24px 40px -24px rgba(0,0,0,.18);padding:34px 3% 38px;display:none;grid-template-columns:repeat(3,minmax(0,220px));gap:60px}
+.mega.open{display:grid}
+.mega h4{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;letter-spacing:.08em;color:var(--gold);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.mega li{list-style:none}
+.mega li a{display:block;padding:6px 0;font-size:14px;color:#333;transition:.2s}
+.mega li a:hover{color:var(--gold);padding-left:6px}
+.mega .all{font-weight:500;text-decoration:underline;text-underline-offset:4px;margin-top:6px}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:520px;background:var(--soft)}
+.hero-text{display:flex;flex-direction:column;justify-content:center;padding:60px 8%}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(40px,5vw,72px);line-height:1.05;margin-bottom:20px}
+.hero p{color:var(--muted);max-width:420px;line-height:1.7;font-weight:300;margin-bottom:32px}
+.btn{display:inline-block;align-self:flex-start;background:var(--ink);color:#fff;padding:15px 38px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;border:0;transition:.3s}
+.btn:hover{background:var(--gold)}
+.hero-img{background:#e9e5dc center top/cover no-repeat}
+
+/* Liste */
+.bar{display:flex;justify-content:space-between;align-items:baseline;padding:50px 3% 18px}
+.bar h2{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600}
+.bar span{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:34px 22px;padding:10px 3% 80px}
+.card{cursor:pointer}
+.card .ph{aspect-ratio:3/4;background:var(--soft);overflow:hidden}
+.card img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .7s}
+.card:hover img{transform:scale(1.035)}
+.card .cat{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:14px 0 4px}
+.card .nm{font-size:16px}
+.dots{display:flex;gap:6px;margin-top:10px}
+.dot{width:13px;height:13px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:60px 0}
+
+/* Ürün detay */
+.modal{position:fixed;inset:0;z-index:300;background:rgba(10,10,10,.6);display:none;justify-content:center;align-items:flex-start;overflow-y:auto;padding:30px 16px}
+.modal.open{display:flex}
+.sheet{background:#fff;width:100%;max-width:1100px;display:grid;grid-template-columns:1.05fr 1fr;position:relative;animation:in .3s ease}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.x{position:absolute;top:12px;right:16px;z-index:5;background:#fff;border:0;width:38px;height:38px;border-radius:50%;font-size:22px}
+.gal{background:var(--soft)}
+.gal .main{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;cursor:zoom-in}
+.info{padding:48px 44px}
+.info .cat{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.info h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;line-height:1.1;margin:10px 0 6px}
+.info .sub{color:var(--muted);font-size:14px;font-weight:300;line-height:1.7;margin-bottom:22px}
+.lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.lbl b{font-weight:500;color:var(--gold)}
+.sw{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.sw button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.2);position:relative;transition:.2s}
+.sw button.on{box-shadow:0 0 0 2px #fff,0 0 0 3px var(--gold)}
+.sizes{display:flex;gap:8px;margin-bottom:26px}
+.sizes span{min-width:46px;text-align:center;border:1px solid var(--line);padding:10px 0;font-size:13px}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:16px 0;font-size:13px;letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between}
+summary::after{content:"+";color:var(--gold);font-size:18px;line-height:1}
+details[open] summary::after{content:"–"}
+.dc{padding:0 0 18px;font-size:14px;color:#444;line-height:1.75;font-weight:300}
+.dc ul{padding-left:18px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+th,td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:center}
+th{font-weight:500;background:var(--soft)}
+.wa{margin-top:26px;display:flex;align-items:center;justify-content:center;gap:10px;background:#1fa855;color:#fff;padding:17px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;transition:.3s}
+.wa:hover{background:#178a45}
+.zoom{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;cursor:zoom-out}
+.zoom.open{display:flex}
+.zoom img{max-width:94vw;max-height:94vh;object-fit:contain}
+
+/* Footer */
+footer{background:var(--ink);color:#d8d2c3;padding:60px 5% 30px}
+.f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:40px;max-width:1100px;margin:0 auto 40px}
+footer h3{font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:.2em;color:var(--gold-light);margin-bottom:12px}
+footer h5{font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px}
+footer p,footer a{font-size:14px;line-height:1.9;font-weight:300;display:block}
+footer a:hover{color:var(--gold-light)}
+footer i{width:20px;color:var(--gold-light)}
+.copy{text-align:center;font-size:12px;color:#8a8576;border-top:1px solid #2c2c2c;padding-top:22px}
+
+@media(max-width:860px){
+ header{grid-template-columns:auto 1fr;height:auto;padding:12px 4%;row-gap:6px}
+ .logo{font-size:22px;grid-column:2;text-align:right}
+ .right{display:none}
+ nav{grid-column:1;gap:18px}
+ .nav-link{height:44px}.nav-link::after{bottom:8px}
+ .mega{grid-template-columns:1fr 1fr;gap:26px;padding:24px 4%;max-height:70vh;overflow-y:auto}
+ .hero{grid-template-columns:1fr}.hero-img{min-height:340px;order:-1}
+ .sheet{grid-template-columns:1fr}.info{padding:28px 22px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="announce">İstanbul Fatih'ten Türkiye'nin her yerine · WhatsApp ile hızlı sipariş</div>
+
+<header>
+  <nav>
+    <div class="nav-item"><button class="nav-link" onclick="setView('trend')" id="navTrend">Trend Ürünler</button></div>
+    <div class="nav-item"><button class="nav-link" id="navGiyim" aria-expanded="false">Giyim</button></div>
+  </nav>
+  <a href="#" class="logo" onclick="setView('all');return false;">ESMA COLLECTION</a>
+  <div class="right"><a href="#" onclick="setView('all');return false;">Tüm Ürünler</a><a href="#iletisim">İletişim</a></div>
+
+  <div class="mega" id="mega">
+    <div><h4>DIŞ GİYİM</h4><ul>
+      <li><a href="#" onclick="setView('alt','Kaban');return false;">Kaban</a></li>
+      <li><a href="#" onclick="setView('alt','Blazer & Ceket');return false;">Blazer &amp; Ceket</a></li>
+      <li><a href="#" onclick="setView('alt','Trençkot');return false;">Trençkot</a></li>
+      <li><a href="#" onclick="setView('alt','Kürk');return false;">Kürk</a></li>
+      <li><a class="all" href="#" onclick="setView('ana','DIŞ GİYİM');return false;">Tümünü Gör</a></li></ul></div>
+    <div><h4>ÜST GİYİM</h4><ul>
+      <li><a href="#" onclick="setView('alt','Triko & Kazak');return false;">Triko &amp; Kazak</a></li>
+      <li><a href="#" onclick="setView('alt','Bluz & Body');return false;">Bluz &amp; Body</a></li>
+      <li><a href="#" onclick="setView('alt','Hırka');return false;">Hırka</a></li>
+      <li><a href="#" onclick="setView('alt','Gömlek');return false;">Gömlek</a></li>
+      <li><a href="#" onclick="setView('alt','Tişört');return false;">Tişört</a></li>
+      <li><a href="#" onclick="setView('alt','Elbise');return false;">Elbise</a></li>
+      <li><a href="#" onclick="setView('alt','Sweatshirt');return false;">Sweatshirt</a></li>
+      <li><a href="#" onclick="setView('alt','Yelek');return false;">Yelek</a></li>
+      <li><a href="#" onclick="setView('alt','Astar & İçlik');return false;">Astar &amp; İçlik</a></li>
+      <li><a class="all" href="#" onclick="setView('ana','ÜST GİYİM');return false;">Tümünü Gör</a></li></ul></div>
+    <div><h4>ALT GİYİM</h4><ul>
+      <li><a href="#" onclick="setView('alt','Etek');return false;">Etek</a></li>
+      <li><a href="#" onclick="setView('alt','Pantolon');return false;">Pantolon</a></li>
+      <li><a href="#" onclick="setView('alt','Jean');return false;">Jean</a></li>
+      <li><a class="all" href="#" onclick="setView('ana','ALT GİYİM');return false;">Tümünü Gör</a></li></ul></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Yeni Sezon<br>Kaban &amp; Abiye</h1>
+    <p>Birinci sınıf kumaşlar, özenli işçilik. Beğendiğiniz ürünün rengini seçin, detayları inceleyin ve WhatsApp üzerinden sipariş verin.</p>
+    <button class="btn" onclick="document.getElementById('urunler').scrollIntoView({behavior:'smooth'})">Koleksiyonu Keşfet</button>
+  </div>
+  <div class="hero-img" id="heroImg"></div>
+</section>
+
+<div class="bar" id="urunler"><h2 id="viewTitle">Tüm Ürünler</h2><span id="viewCount"></span></div>
+<main class="grid" id="grid"></main>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <button class="x" onclick="closeModal()" aria-label="Kapat">&times;</button>
+    <div class="gal"><img class="main" id="mImg" alt="" onclick="openZoom()"></div>
+    <div class="info">
+      <div class="cat" id="mCat"></div>
+      <h2 id="mName"></h2>
+      <p class="sub" id="mDesc"></p>
+      <div class="lbl">Renk: <b id="mColor"></b></div>
+      <div class="sw" id="mSw"></div>
+      <div class="lbl">Beden</div>
+      <div class="sizes" id="mSizes"></div>
+
+      <details open><summary>Ürün Bilgisi</summary><div class="dc"><ul id="mSpecs"></ul></div></details>
+      <details><summary>Beden &amp; Ölçü Tablosu</summary><div class="dc"><div style="overflow-x:auto"><table id="mTable"></table></div><p style="margin-top:8px;font-size:12px;color:#888">Ölçüler cm cinsindendir, ±1-2 cm farklılık gösterebilir.</p></div></details>
+      <details><summary>Yıkama &amp; Bakım</summary><div class="dc"><ul id="mCare"></ul></div></details>
+
+      <a class="wa" id="mWa" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:20px"></i> WhatsApp ile Sipariş Ver</a>
+    </div>
+  </div>
+</div>
+<div class="zoom" id="zoom" onclick="this.classList.remove('open')"><img id="zImg" alt=""></div>
+
+<footer id="iletisim">
+  <div class="f-grid">
+    <div><h3>ESMA COLLECTION</h3><p>Zarif ve şık kadın giyim. Kaliteli kumaş, kusursuz kalıp.</p></div>
+    <div><h5>Mağaza</h5>
+      <a href="https://www.google.com/maps/place/Mollafenari+Mahallesi,+Celal+Ferdi+G%C3%B6k%C3%A7ay+Sk.+Nebio%C4%9Flu+%C4%B0%C5%9F+Han+7%2FB,+34120+Fatih%2F%C4%B0stanbul/@41.0117026,28.972459,17z" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i>Mollafenari Mah. Celal Ferdi Gökçay Sk. Nebioğlu İş Han 7/B, Fatih / İstanbul</a></div>
+    <div><h5>İletişim</h5>
+      <a href="tel:+905354098158"><i class="fa-solid fa-phone"></i>+90 535 409 81 58</a>
+      <a href="https://wa.me/905354098158" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>WhatsApp Hattı</a></div>
+  </div>
+  <div class="copy">&copy; 2026 ESMA COLLECTION. Tüm hakları saklıdır.</div>
+</footer>
+
+<script>
+const WA = "905354098158";
+
+/* ---- RENK TANIMLARI ---- */
+const C = {
+  kahverengi:["Kahverengi","#6b4430"], bej:["Bej","#d8c3a0"], siyah:["Siyah","#151515"],
+  gri:["Gri","#9a9a9a"], antrasit:["Antrasit","#3b3f44"], kahve:["Kahve","#7a5238"], fume:["Füme","#55585c"],
+  indigo:["İndigo","#2a3a6b"], murdum:["Mürdüm","#5b2a4e"], zumrut:["Zümrüt","#0f6b4f"], bordo:["Bordo","#6d1a2b"]
+};
+
+/* ---- GÖRSEL YOLLARI ----
+   Varsayılan: images/<urun>-<renk>.jpeg  (örn: images/kaban-ayni-siyah.jpeg)
+   Elinizdeki dosyalar aşağıda özel olarak eşleştirildi. */
+const OZEL = {
+  "kaban-ayni-bej":"images/camelkaban.jpeg",
+  "elbise-antrasit":"images/0ae3df0c-7f07-44fb-935d-34337aa7f5c0.jpeg",
+  "elbise-zumrut":"images/yeşilelbise.jpeg"
+};
+const imgOf = (slug,renk)=> OZEL[slug+"-"+renk] || `images/${slug}-${renk}.jpeg`;
+
+const BAKIM = ["Düşük ısıda (30°C) yıkayınız.","Çamaşır suyu kullanmayınız.","Düşük ısıda ütüleyiniz, ters yüzünden ütülemeniz önerilir.","Kurutma makinesinde kurutmayınız.","Hassas ürünlerde kuru temizleme önerilir."];
+
+/* ---- ÜRÜNLER ---- */
+const urunler = [
+ { slug:"kaban-ayni", ad:"Kaşe Kaban – Aynı Renk Düğmeli", ana:"DIŞ GİYİM", alt:"Kaban", trend:true,
+   renkler:["kahverengi","bej","siyah","gri","antrasit"],
+   aciklama:"Kuşaklı, uzun kesim kaşe kaban. Kumaşıyla aynı renkte düğmeleri sayesinde sade ve zarif bir görünüm sunar.",
+   beden:["36","38","40","42"],
+   ozellik:["Kumaş: %70 Yün, %30 Polyester (1. sınıf kaşe)","Astar: Tam astarlı","Boy: Yaklaşık 110 cm (38 beden)","Kalıp: Regular, belden kuşaklı","Kapanış: Aynı renk düğme","Cep: İki yanda cepli"],
+   olcu:[["Beden","Göğüs","Bel","Kol","Boy"],["36",94,76,60,108],["38",98,80,61,110],["40",102,84,62,112],["42",106,88,63,114]],
+   hero:true },
+ { slug:"kaban-farkli", ad:"Kaşe Kaban – Farklı Renk Düğmeli", ana:"DIŞ GİYİM", alt:"Kaban", trend:true,
+   renkler:["bej","gri","kahve","fume"],
+   aciklama:"Zıt renkli düğme detaylarıyla öne çıkan, kuşaklı kaşe kaban. Şık ve karakterli bir dış giyim seçeneği.",
+   beden:["36","38","40","42"],
+   ozellik:["Kumaş: %70 Yün, %30 Polyester (1. sınıf kaşe)","Astar: Tam astarlı","Boy: Yaklaşık 110 cm (38 beden)","Kalıp: Regular, belden kuşaklı","Kapanış: Farklı renk düğme","Cep: İki yanda cepli"],
+   olcu:[["Beden","Göğüs","Bel","Kol","Boy"],["36",94,76,60,108],["38",98,80,61,110],["40",102,84,62,112],["42",106,88,63,114]] },
+ { slug:"elbise", ad:"Toka Detaylı Saten Abiye Elbise", ana:"ÜST GİYİM", alt:"Elbise", trend:true,
+   renkler:["antrasit","indigo","murdum","zumrut","bordo"],
+   aciklama:"Belinde toka detayı bulunan, akışkan dökümlü saten abiye elbise. Davet ve özel geceler için.",
+   beden:["36","38","40","42"],
+   ozellik:["Kumaş: İpek saten","Astar: Astarlı","Boy: Yaklaşık 125 cm (38 beden)","Kalıp: Belden oturan, A kesim","Detay: Toka aksesuarlı","Kol: Uzun kol"],
+   olcu:[["Beden","Göğüs","Bel","Kalça","Boy"],["36",88,68,94,123],["38",92,72,98,125],["40",96,76,102,127],["42",100,80,106,129]] }
+];
+
+const $ = id=>document.getElementById(id);
+const mega=$("mega"), navG=$("navGiyim");
+
+/* Menü */
+navG.addEventListener("click",e=>{e.stopPropagation();const o=mega.classList.toggle("open");navG.classList.toggle("on",o);navG.setAttribute("aria-expanded",o)});
+document.addEventListener("click",e=>{if(!mega.contains(e.target)){mega.classList.remove("open");navG.classList.remove("on")}});
+
+/* Görsel hata: renkli yedek zemin */
+function fallback(img,renk){img.onerror=null;const c=C[renk][1];
+  img.src="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'><rect width='600' height='800' fill='${c}'/><text x='300' y='410' font-family='Georgia' font-size='26' fill='rgba(255,255,255,.75)' text-anchor='middle'>Görsel eklenecek</text></svg>`)}
+
+/* Liste */
+function render(list,title){
+  $("viewTitle").textContent=title;$("viewCount").textContent=list.length+" ürün";
+  const g=$("grid");g.innerHTML="";
+  if(!list.length){g.innerHTML='<p class="empty">Bu kategoride yakında yeni ürünler olacak.</p>';return}
+  list.forEach(u=>{
+    const k=document.createElement("div");k.className="card";k.tabIndex=0;
+    k.onclick=()=>openModal(u);k.onkeydown=e=>{if(e.key==="Enter")openModal(u)};
+    k.innerHTML=`<div class="ph"><img src="${imgOf(u.slug,u.renkler[0])}" alt="${u.ad}"></div>
+      <div class="cat">${u.alt}</div><div class="nm">${u.ad}</div>
+      <div class="dots">${u.renkler.map(r=>`<span class="dot" title="${C[r][0]}" style="background:${C[r][1]}"></span>`).join("")}</div>`;
+    const im=k.querySelector("img");im.onerror=()=>fallback(im,u.renkler[0]);
+    g.appendChild(k);
+  });
+}
+function setView(t,v){
+  mega.classList.remove("open");navG.classList.remove("on");
+  let l=urunler,title="Tüm Ürünler";
+  if(t==="trend"){l=urunler.filter(u=>u.trend);title="Trend Ürünler"}
+  if(t==="alt"){l=urunler.filter(u=>u.alt===v);title=v}
+  if(t==="ana"){l=urunler.filter(u=>u.ana===v);title=v.charAt(0)+v.slice(1).toLowerCase()}
+  render(l,title);$("urunler").scrollIntoView({behavior:"smooth"});
+}
+
+/* Detay */
+let cur=null,curColor=null;
+function openModal(u){
+  cur=u;
+  $("mCat").textContent=u.ana+" / "+u.alt;$("mName").textContent=u.ad;$("mDesc").textContent=u.aciklama;
+  $("mSizes").innerHTML=u.beden.map(b=>`<span>${b}</span>`).join("");
+  $("mSpecs").innerHTML=u.ozellik.map(s=>`<li>${s}</li>`).join("");
+  $("mCare").innerHTML=BAKIM.map(s=>`<li>${s}</li>`).join("");
+  $("mTable").innerHTML=u.olcu.map((r,i)=>"<tr>"+r.map(c=>i?`<td>${c}</td>`:`<th>${c}</th>`).join("")+"</tr>").join("");
+  $("mSw").innerHTML=u.renkler.map(r=>`<button style="background:${C[r][1]}" title="${C[r][0]}" aria-label="${C[r][0]}" data-r="${r}"></button>`).join("");
+  $("mSw").querySelectorAll("button").forEach(b=>b.onclick=()=>pick(b.dataset.r));
+  pick(u.renkler[0]);
+  $("modal").classList.add("open");document.body.style.overflow="hidden";
+}
+function pick(r){
+  curColor=r;const im=$("mImg");im.onerror=()=>fallback(im,r);im.src=imgOf(cur.slug,r);im.alt=cur.ad+" "+C[r][0];
+  $("mColor").textContent=C[r][0];
+  $("mSw").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.r===r));
+  const m=`Merhaba, ESMA COLLECTION sitenizdeki "${cur.ad}" ürününü ${C[r][0]} renkte sipariş vermek / bilgi almak istiyorum.`;
+  $("mWa").href=`https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
+}
+function closeModal(){$("modal").classList.remove("open");document.body.style.overflow=""}
+function openZoom(){$("zImg").src=$("mImg").src;$("zoom").classList.add("open")}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("zoom").classList.contains("open")?$("zoom").classList.remove("open"):closeModal()}});
+
+/* Başlangıç */
+$("heroImg").style.backgroundImage=`url('${imgOf("kaban-ayni","bej")}')`;
+render(urunler,"Tüm Ürünler");
+</script>
+</body>
+</html>
